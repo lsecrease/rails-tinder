@@ -30,5 +30,12 @@
    <%= image_tag "logo_white.png", alt: "Tinstuk Logo", class: "logo-brand" %>
 </a>
     <%= yield %>
+   
+ <script type="text/javascript">
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
+</script>
+
   </body>
 </html>
