@@ -37,7 +37,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem "autoprefixer-rails"
 gem 'font-awesome-sass'
-
+gem 'omniauth-facebook'
+gem 'dotenv-rails', :groups => [:development, :test]
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
