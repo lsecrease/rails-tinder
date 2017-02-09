@@ -1,8 +1,11 @@
 class User < ApplicationRecord
+ 
+  default_scope { order('id DESC') }
+ 
  		has_attached_file :avatar, 
                   :storage  => :s3, 
-                  :styles => { :medium => "370x370", :thumb => "100x100" },
-    validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+                  :styles => { :medium => "370x370", :thumb => "100x100" }
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
  
  
  def self.sign_in_from_omniauth(auth)
@@ -11,7 +14,7 @@ class User < ApplicationRecord
  
  	def self.create_user_from_omniauth(auth)
     create(
-      image: process_uri(auth['info']['image'] + "?width=9999"),
+      avatar: process_uri(auth['info']['image'] + "?width=9999"),
       email: auth['info']['email'],
       provider: auth['provider'],
       uid: auth['uid'],
@@ -20,6 +23,7 @@ class User < ApplicationRecord
       date_of_birth: auth['extra']['raw_info']['birthday'].present? ? Date.strptime( auth['extra']['raw_info']['birthday'], '%m/%d/%Y') : nil,
       location: auth['info']['location'],
       bio: auth['extra']['raw_info']['bio']
+#      region: ENV['AWS_REGION']
     )
 	end
  
