@@ -63,6 +63,8 @@ $('.actions .like, .actions .dislike').click(function(e){
           alert('Dislike image ' + (item.index()+1));
       },
       onLike: function (item) {
+     var myId = $("#tinderslide > ul li").last().attr("id");
+	    $("#user_" + myId)[0].click();
           alert('Like image ' + (item.index()+1));
       },
       animationRevertSpeed: 200,
